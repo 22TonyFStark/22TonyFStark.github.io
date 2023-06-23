@@ -14,9 +14,9 @@
 ## <font color=#597abc face="Times New Roman">Biography</font>
 My name is Zhongfei Qing, and I am currently pursuing a master's degree at the University of Chinese Academy of Sciences. In addition to my studies, I am also interning at the Content Generation Group of SenseTime Research, where I work under the guidance of Zhitao Yang and Lei Yang.  
 My research interests include:  
-**1: Human Motion Generation like audio2Motion and text2Motion is my favorite, my goal is to create vivid NPCs in the virtual world for gaming;**
-**2: Image Segmentation with Large-scale Models;**
-**3: Conditional Image Generation, such as painting via a semantic mask or text description.**
+**1: Human Motion Generation like audio2Motion and text2Motion is my favorite, my goal is to create vivid NPCs in the virtual world for gaming;**  
+**2: Image Segmentation with Large-scale Models;**  
+**3: Conditional Image Generation, such as painting via a semantic mask or text description.**  
 
 ## <font color=#597abc face="Times New Roman">Projects</font>
 
