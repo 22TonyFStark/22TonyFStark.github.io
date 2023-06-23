@@ -21,11 +21,11 @@ My research interests include:
 ## <font color=#597abc face="Times New Roman">Projects</font>
 
 ### <font color=#597abc face="Times New Roman">1.Synbody: Synthetic Dataset</font>
-<img src="images/synbody.png" alt="论文图片" width="700" height="400">
+<img src="images/synbody.png" alt="论文图片" width="600" height="300">
 
-During my internship at SenseTime, I had the honor of participating in the Synbody project. This experience allowed me to gain hands-on experience in the field and contribute to the success of the project. I am grateful for the opportunity to have been a part of this project and am proud of the work that was accomplished.
+During my internship at SenseTime, I have the honor of participating in the Synbody project. This experience allows me to gain hands-on experience in the field and contribute to the success of the project. I am grateful for the opportunity to be a part of this project and proud of the work that we are accomplishing.
 
 ### <font color=#597abc face="Times New Roman">2.Synbody: Human Motion Synthesis from Script</font>
-<img src="images/story2motion.jpg" alt="论文图片" width="700" height="475">
+<img src="images/story2motion.jpg" alt="论文图片" width="600" height="400">
 
-As part of the Synbody, I was responsible for overseeing a key task, namely character motion planning, and synthesis. This experience provided me with valuable skills and knowledge and allowed me to make meaningful contributions to the project's success. I am proud to have played a part in this project.
+As part of the Synbody project, I am responsible for overseeing a key task, namely character motion planning and synthesis. This experience provides me with valuable skills and knowledge and allows me to make meaningful contributions to the project's success. I am proud to be playing a part in this project.
