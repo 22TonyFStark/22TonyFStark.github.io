@@ -754,7 +754,7 @@
                 </span>
                 <!-- Video Link. -->
                 <span class="link-block">
-                  <a href="https://www.youtube.com/watch?v=ogXpRB9zR9A" class="external-link button is-normal is-rounded is-dark">
+                  <a href="https://youtu.be/pMv5WW2q9RE?si=0GhCLntNQvAuGfcz" class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                         <svg class="svg-inline--fa fa-youtube fa-w-18" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="youtube" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"></path></svg><!-- <i class="fab fa-youtube"></i> Font Awesome fontawesome.com -->
                     </span>
@@ -803,19 +803,14 @@
         <div class="column is-four-fifths">
           <h2 class="title is-3">Abstract</h2>
           <div class="content has-text-justified">
-            Synthetic data has emerged as a promising source for 3D human research
-            as it offers low-cost access to large-scale human datasets.
-            To advance the diversity and annotation quality of human models,
-            we introduce a new synthetic dataset, <strong>Synbody</strong>, with three appealing features:
-            1) a clothed parametric human model that can generate a diverse range of subjects;
-            2) the layered human representation that naturally offers high-quality 3D annotations to support multiple tasks;
-            3) a scalable system for producing realistic data to facilitate real-world tasks.
-            The dataset comprises 1.7M images with corresponding accurate 3D annotations,
-            covering 10,000 human body models, 1000 actions, and various viewpoints.
-            The dataset includes two subsets for human mesh recovery as well as human neural rendering.
-            Extensive experiments on SynBody indicate that it substantially enhances both SMPL and SMPL-X estimation.
-            Furthermore, the incorporation of layered annotations offers a valuable training resource for investigating
-            the Human Neural Radiance Fields (NeRF).
+            Generating natural human motion from a story has the potential to transform the landscape of animation, gaming, and film industries. 
+            A new and challenging task, \textbf{Story-to-Motion}, arises when characters are required to move to various locations and perform specific motions based on a long text description.  This task demands a fusion of low-level control (trajectories) and high-level control (motion semantics). 
+            Previous works in character control and text-to-motion have addressed related aspects, yet a comprehensive solution remains elusive: character control methods do not handle text description, whereas text-to-motion methods lack position constraints and often produce unstable motions.
+            In light of these limitations, we propose a novel system that generates controllable, infinitely long motions and trajectories aligned with the input text.
+            1) we leverage contemporary Large Language Models to act as a text-driven motion scheduler to extract a series of (text, position) pairs from long text. 
+            2) we develop a text-driven motion retrieval scheme that incorporates classic motion matching with motion semantic and trajectory constraints. 
+            3) we design a progressive mask transformer that addresses common artifacts in the transition motion such as unnatural pose and foot sliding.
+            Beyond its pioneering role as the first comprehensive solution for Story-to-Motion, our system undergoes evaluation across three distinct sub-tasks: trajectory following, temporal action composition, and motion blending, where it outperforms previous state-of-the-art (SOTA) motion synthesis methods across the board.
           </div>
         </div>
       </div>
@@ -855,7 +850,7 @@
       <h2 class="title">BibTeX</h2>
       <pre><code>@misc{yang2023synbody,
   title={SynBody: Synthetic Dataset with Layered Human Models for 3D Human Perception and Modeling}, 
-  author={Zhitao, Yang and Zhongang, Cai and Haiyi, Mei and Shuai, Liu and Zhaoxi, Chen and Weiye, Xiao and Yukun, Wei and Zhongfei, Qing and Chen, Wei and Bo, Dai and Wayne, Wu and Chen, Qian and Dahua, Lin and Ziwei, Liu and Lei, Yang},
+  author={Zhongfei, Qing and Zhongang, Cai and Zhitao, Yang and Lei, Yang},
   year={2023},
   journal={arXiv preprint arXiv:2303.17368},
 }</code></pre>
