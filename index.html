@@ -1,803 +1,381 @@
-<!DOCTYPE html>
-<html class="fontawesome-i2svg-active fontawesome-i2svg-complete">
-
+<!doctype html>
+<html lang="zh-CN">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-  <meta name="description"
-    content="Story-to-Motion: Synthesizing Infinite and Controllable Character Animation from Long Text">
-  <meta name="keywords" content="SynBody">
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Story-to-Motion: Synthesizing Infinite and Controllable Character Animation from Long Text</title>
-
-  <style type="text/css">
-    svg:not(:root).svg-inline--fa {
-      overflow: visible
-    }
-
-    .svg-inline--fa {
-      display: inline-block;
-      font-size: inherit;
-      height: 1em;
-      overflow: visible;
-      vertical-align: -.125em
-    }
-
-    .svg-inline--fa.fa-lg {
-      vertical-align: -.225em
-    }
-
-    .svg-inline--fa.fa-w-1 {
-      width: .0625em
-    }
-
-    .svg-inline--fa.fa-w-2 {
-      width: .125em
-    }
-
-    .svg-inline--fa.fa-w-3 {
-      width: .1875em
-    }
-
-    .svg-inline--fa.fa-w-4 {
-      width: .25em
-    }
-
-    .svg-inline--fa.fa-w-5 {
-      width: .3125em
-    }
-
-    .svg-inline--fa.fa-w-6 {
-      width: .375em
-    }
-
-    .svg-inline--fa.fa-w-7 {
-      width: .4375em
-    }
-
-    .svg-inline--fa.fa-w-8 {
-      width: .5em
-    }
-
-    .svg-inline--fa.fa-w-9 {
-      width: .5625em
-    }
-
-    .svg-inline--fa.fa-w-10 {
-      width: .625em
-    }
-
-    .svg-inline--fa.fa-w-11 {
-      width: .6875em
-    }
-
-    .svg-inline--fa.fa-w-12 {
-      width: .75em
-    }
-
-    .svg-inline--fa.fa-w-13 {
-      width: .8125em
-    }
-
-    .svg-inline--fa.fa-w-14 {
-      width: .875em
-    }
-
-    .svg-inline--fa.fa-w-15 {
-      width: .9375em
-    }
-
-    .svg-inline--fa.fa-w-16 {
-      width: 1em
-    }
-
-    .svg-inline--fa.fa-w-17 {
-      width: 1.0625em
-    }
-
-    .svg-inline--fa.fa-w-18 {
-      width: 1.125em
-    }
-
-    .svg-inline--fa.fa-w-19 {
-      width: 1.1875em
-    }
-
-    .svg-inline--fa.fa-w-20 {
-      width: 1.25em
-    }
-
-    .svg-inline--fa.fa-pull-left {
-      margin-right: .3em;
-      width: auto
-    }
-
-    .svg-inline--fa.fa-pull-right {
-      margin-left: .3em;
-      width: auto
-    }
-
-    .svg-inline--fa.fa-border {
-      height: 1.5em
-    }
-
-    .svg-inline--fa.fa-li {
-      width: 2em
-    }
-
-    .svg-inline--fa.fa-fw {
-      width: 1.25em
-    }
-
-    .fa-layers svg.svg-inline--fa {
-      bottom: 0;
-      left: 0;
-      margin: auto;
-      position: absolute;
-      right: 0;
-      top: 0
-    }
-
-    .fa-layers {
-      display: inline-block;
-      height: 1em;
-      position: relative;
-      text-align: center;
-      vertical-align: -.125em;
-      width: 1em
-    }
-
-    .fa-layers svg.svg-inline--fa {
-      -webkit-transform-origin: center center;
-      transform-origin: center center
-    }
-
-    .fa-layers-counter,
-    .fa-layers-text {
-      display: inline-block;
-      position: absolute;
-      text-align: center
-    }
-
-    .fa-layers-text {
-      left: 50%;
-      top: 50%;
-      -webkit-transform: translate(-50%, -50%);
-      transform: translate(-50%, -50%);
-      -webkit-transform-origin: center center;
-      transform-origin: center center
-    }
-
-    .fa-layers-counter {
-      background-color: #ff253a;
-      border-radius: 1em;
-      -webkit-box-sizing: border-box;
-      box-sizing: border-box;
-      color: #fff;
-      height: 1.5em;
-      line-height: 1;
-      max-width: 5em;
-      min-width: 1.5em;
-      overflow: hidden;
-      padding: .25em;
-      right: 0;
-      text-overflow: ellipsis;
-      top: 0;
-      -webkit-transform: scale(.25);
-      transform: scale(.25);
-      -webkit-transform-origin: top right;
-      transform-origin: top right
-    }
-
-    .fa-layers-bottom-right {
-      bottom: 0;
-      right: 0;
-      top: auto;
-      -webkit-transform: scale(.25);
-      transform: scale(.25);
-      -webkit-transform-origin: bottom right;
-      transform-origin: bottom right
-    }
-
-    .fa-layers-bottom-left {
-      bottom: 0;
-      left: 0;
-      right: auto;
-      top: auto;
-      -webkit-transform: scale(.25);
-      transform: scale(.25);
-      -webkit-transform-origin: bottom left;
-      transform-origin: bottom left
-    }
-
-    .fa-layers-top-right {
-      right: 0;
-      top: 0;
-      -webkit-transform: scale(.25);
-      transform: scale(.25);
-      -webkit-transform-origin: top right;
-      transform-origin: top right
-    }
-
-    .fa-layers-top-left {
-      left: 0;
-      right: auto;
-      top: 0;
-      -webkit-transform: scale(.25);
-      transform: scale(.25);
-      -webkit-transform-origin: top left;
-      transform-origin: top left
-    }
-
-    .fa-lg {
-      font-size: 1.3333333333em;
-      line-height: .75em;
-      vertical-align: -.0667em
-    }
-
-    .fa-xs {
-      font-size: .75em
-    }
-
-    .fa-sm {
-      font-size: .875em
-    }
-
-    .fa-1x {
-      font-size: 1em
-    }
-
-    .fa-2x {
-      font-size: 2em
-    }
-
-    .fa-3x {
-      font-size: 3em
-    }
-
-    .fa-4x {
-      font-size: 4em
-    }
-
-    .fa-5x {
-      font-size: 5em
-    }
-
-    .fa-6x {
-      font-size: 6em
-    }
-
-    .fa-7x {
-      font-size: 7em
-    }
-
-    .fa-8x {
-      font-size: 8em
-    }
-
-    .fa-9x {
-      font-size: 9em
-    }
-
-    .fa-10x {
-      font-size: 10em
-    }
-
-    .fa-fw {
-      text-align: center;
-      width: 1.25em
-    }
-
-    .fa-ul {
-      list-style-type: none;
-      margin-left: 2.5em;
-      padding-left: 0
-    }
-
-    .fa-ul>li {
-      position: relative
-    }
-
-    .fa-li {
-      left: -2em;
-      position: absolute;
-      text-align: center;
-      width: 2em;
-      line-height: inherit
-    }
-
-    .fa-border {
-      border: solid .08em #eee;
-      border-radius: .1em;
-      padding: .2em .25em .15em
-    }
-
-    .fa-pull-left {
-      float: left
-    }
-
-    .fa-pull-right {
-      float: right
-    }
-
-    .fa.fa-pull-left,
-    .fab.fa-pull-left,
-    .fal.fa-pull-left,
-    .far.fa-pull-left,
-    .fas.fa-pull-left {
-      margin-right: .3em
-    }
-
-    .fa.fa-pull-right,
-    .fab.fa-pull-right,
-    .fal.fa-pull-right,
-    .far.fa-pull-right,
-    .fas.fa-pull-right {
-      margin-left: .3em
-    }
-
-    .fa-spin {
-      -webkit-animation: fa-spin 2s infinite linear;
-      animation: fa-spin 2s infinite linear
-    }
-
-    .fa-pulse {
-      -webkit-animation: fa-spin 1s infinite steps(8);
-      animation: fa-spin 1s infinite steps(8)
-    }
-
-    @-webkit-keyframes fa-spin {
-      0% {
-        -webkit-transform: rotate(0);
-        transform: rotate(0)
-      }
-
-      100% {
-        -webkit-transform: rotate(360deg);
-        transform: rotate(360deg)
-      }
-    }
-
-    @keyframes fa-spin {
-      0% {
-        -webkit-transform: rotate(0);
-        transform: rotate(0)
-      }
-
-      100% {
-        -webkit-transform: rotate(360deg);
-        transform: rotate(360deg)
-      }
-    }
-
-    .fa-rotate-90 {
-      -webkit-transform: rotate(90deg);
-      transform: rotate(90deg)
-    }
-
-    .fa-rotate-180 {
-      -webkit-transform: rotate(180deg);
-      transform: rotate(180deg)
-    }
-
-    .fa-rotate-270 {
-      -webkit-transform: rotate(270deg);
-      transform: rotate(270deg)
-    }
-
-    .fa-flip-horizontal {
-      -webkit-transform: scale(-1, 1);
-      transform: scale(-1, 1)
-    }
-
-    .fa-flip-vertical {
-      -webkit-transform: scale(1, -1);
-      transform: scale(1, -1)
-    }
-
-    .fa-flip-both,
-    .fa-flip-horizontal.fa-flip-vertical {
-      -webkit-transform: scale(-1, -1);
-      transform: scale(-1, -1)
-    }
-
-    :root .fa-flip-both,
-    :root .fa-flip-horizontal,
-    :root .fa-flip-vertical,
-    :root .fa-rotate-180,
-    :root .fa-rotate-270,
-    :root .fa-rotate-90 {
-      -webkit-filter: none;
-      filter: none
-    }
-
-    .fa-stack {
-      display: inline-block;
-      height: 2em;
-      position: relative;
-      width: 2.5em
-    }
-
-    .fa-stack-1x,
-    .fa-stack-2x {
-      bottom: 0;
-      left: 0;
-      margin: auto;
-      position: absolute;
-      right: 0;
-      top: 0
-    }
-
-    .svg-inline--fa.fa-stack-1x {
-      height: 1em;
-      width: 1.25em
-    }
-
-    .svg-inline--fa.fa-stack-2x {
-      height: 2em;
-      width: 2.5em
-    }
-
-    .fa-inverse {
-      color: #fff
-    }
-
-    .sr-only {
-      border: 0;
-      clip: rect(0, 0, 0, 0);
-      height: 1px;
-      margin: -1px;
-      overflow: hidden;
-      padding: 0;
-      position: absolute;
-      width: 1px
-    }
-
-    .sr-only-focusable:active,
-    .sr-only-focusable:focus {
-      clip: auto;
-      height: auto;
-      margin: 0;
-      overflow: visible;
-      position: static;
-      width: auto
-    }
-
-    .svg-inline--fa .fa-primary {
-      fill: var(--fa-primary-color, currentColor);
-      opacity: 1;
-      opacity: var(--fa-primary-opacity, 1)
-    }
-
-    .svg-inline--fa .fa-secondary {
-      fill: var(--fa-secondary-color, currentColor);
-      opacity: .4;
-      opacity: var(--fa-secondary-opacity, .4)
-    }
-
-    .svg-inline--fa.fa-swap-opacity .fa-primary {
-      opacity: .4;
-      opacity: var(--fa-secondary-opacity, .4)
-    }
-
-    .svg-inline--fa.fa-swap-opacity .fa-secondary {
-      opacity: 1;
-      opacity: var(--fa-primary-opacity, 1)
-    }
-
-    .svg-inline--fa mask .fa-primary,
-    .svg-inline--fa mask .fa-secondary {
-      fill: #000
-    }
-
-    .fad.fa-inverse {
-      color: #fff
-    }
-  </style>
-
-  <link rel="stylesheet" href="./style/bulma.min.css">
-  <link rel="stylesheet" href="./style/bulma-carousel.min.css">
-  <link rel="stylesheet" href="./style/bulma-slider.min.css">
-  <link rel="stylesheet" href="./style/fontawesome.all.min.css">
-  <link rel="stylesheet" href="./style/academicons.min.css">
-  <link rel="stylesheet" href="./style/index.css">
-
-  <style type="text/css">
-    ._th-container ._th-item {
-      margin-bottom: 3px;
-      position: relative;
-      width: 0;
-      height: 0;
-      cursor: pointer;
-      opacity: .3;
-      background-color: aquamarine;
-      border-radius: 100%;
-      text-align: center;
-      line-height: 30px;
-      -webkit-transition: all .35s;
-      -o-transition: all .35s;
-      transition: all .35s;
-      right: 30px
-    }
-
-    ._th-container ._th-item,
-    ._th-container ._th-click-hover,
-    ._th_cover-all-show-times ._th_times {
-      -webkit-box-shadow: -3px 4px 12px -5px black;
-      box-shadow: -3px 4px 12px -5px black
-    }
-
-    ._th-container:hover ._th-item._item-x2 {
-      margin-left: 18px;
-      width: 40px;
-      height: 40px;
-      line-height: 40px
-    }
-
-    ._th-container:hover ._th-item._item-x-2 {
-      margin-left: 17px;
-      width: 38px;
-      height: 38px;
-      line-height: 38px
-    }
-
-    ._th-container:hover ._th-item._item-xx2 {
-      width: 36px;
-      height: 36px;
-      margin-left: 16px;
-      line-height: 36px
-    }
-
-    ._th-container:hover ._th-item._item-xx-2 {
-      width: 32px;
-      height: 32px;
-      line-height: 32px;
-      margin-left: 14px
-    }
-
-    ._th-container:hover ._th-item._item-reset {
-      width: 30px;
-      line-height: 30px;
-      height: 30px;
-      margin-left: 10px
-    }
-
-    ._th-click-hover {
-      position: relative;
-      -webkit-transition: all .5s;
-      -o-transition: all .5s;
-      transition: all .5s;
-      height: 45px;
-      width: 45px;
-      cursor: pointer;
-      opacity: .3;
-      border-radius: 100%;
-      background-color: aquamarine;
-      text-align: center;
-      line-height: 45px;
-      right: 0
-    }
-
-    ._th-container:hover {
-      left: -5px
-    }
-
-    ._th-container {
-      font-size: 12px;
-      -webkit-transition: all .5s;
-      -o-transition: all .5s;
-      transition: all .5s;
-      left: -35px;
-      top: 20%;
-      position: fixed;
-      -webkit-box-sizing: border-box;
-      box-sizing: border-box;
-      z-index: 100000;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none
-    }
-
-    ._th-container ._th-item:hover {
-      opacity: .8;
-      background-color: #5fb492;
-      color: aliceblue
-    }
-
-    ._th-container ._th-item:active {
-      opacity: .9;
-      background-color: #1b3a26;
-      color: aliceblue
-    }
-
-    ._th-container:hover ._th-click-hover {
-      opacity: .8
-    }
-
-    ._th-container:hover ._th-item {
-      opacity: .6;
-      right: 0
-    }
-
-    ._th-container ._th-click-hover:hover {
-      opacity: .8;
-      background-color: #5fb492;
-      color: aliceblue
-    }
-
-    ._th_cover-all-show-times {
-      position: fixed;
-      top: 0;
-      right: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 99999;
-      opacity: 1;
-      font-weight: 900;
-      font-size: 30px;
-      color: #4f4f4f;
-      background-color: rgba(0, 0, 0, 0.1)
-    }
-
-    ._th_cover-all-show-times._th_hidden {
-      z-index: -99999;
-      opacity: 0;
-      -webkit-transition: 1s all;
-      -o-transition: 1s all;
-      transition: 1s all
-    }
-
-    ._th_cover-all-show-times ._th_times {
-      width: 300px;
-      height: 300px;
-      border-radius: 50%;
-      background-color: rgba(127, 255, 212, 0.51);
-      text-align: center;
-      line-height: 300px;
-      position: absolute;
-      top: 50%;
-      right: 50%;
-      margin-top: -150px;
-      margin-right: -150px
-    }
-  </style>
+  <meta name="description" content="Zhongfei Qing — research, publications, and projects.">
+  <title>Zhongfei Qing</title>
+  <link rel="stylesheet" href="./assets/site.css">
 </head>
+<body>
+  <header class="site-header">
+    <nav aria-label="Primary navigation">
+      <a href="#about" data-i18n="navAbout">About</a>
+      <a href="#projects" data-i18n="navProjects">Projects</a>
+      <button class="language-toggle" type="button" aria-label="切换到中文" data-language-toggle>中文</button>
+    </nav>
+  </header>
 
-<body data-new-gr-c-s-check-loaded="14.1102.0" data-gr-ext-installed="">
-  <section class="hero">
-    <div class="hero-body">
-      <div class="container is-max-desktop">
-        <div class="columns is-centered">
-          <div class="column has-text-centered">
-            <h1 class="title is-1 publication-title">Story-to-Motion: Synthesizing Infinite and Controllable Character Animation from Long Text</h1>
-
-            <div class="is-size-4 publication-authors">
-              <span class="author-block"><sup></sup>Siggraph Asia 2023</span>
-            </div>
-
-            <div class="is-size-4 publication-authors">
-              <span class="author-block">
-                Zhongfei Qing<sup></sup></span>&nbsp;&nbsp;&nbsp;&nbsp;
-              <span class="author-block">
-                <a href="https://caizhongang.github.io/">Zhongang Cai</a><sup></sup></span>&nbsp;&nbsp;&nbsp;&nbsp;
-              <span class="author-block">
-                <a href="https://github.com/Maoxie">Zhitao Yang</a><sup></sup></span>&nbsp;&nbsp;&nbsp;&nbsp;
-              <span class="author-block">
-                <a href="http://yanglei.me/">Lei Yang</a><sup>✉</sup></span>
-              <br />
-            </div>
-
-            <div class="is-size-5 publication-authors">
-              <span class="author-block"><sup></sup>SenseTime Research</span>
-            </div>
-
-            <div class="is-size-6 publication-authors">
-              <span class="author-block"><sup>✉</sup>Corresponding Author</span>
-            </div>
-
-            <div class="column has-text-centered">
-              <div class="publication-links">
-                <!-- PDF Link. -->
-                <span class="link-block">
-                  <a href="https://arxiv.org/pdf/2303.17368.pdf"
-                    class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">
-                      <svg class="svg-inline--fa fa-file-pdf fa-w-12" aria-hidden="true" focusable="false"
-                        data-prefix="fas" data-icon="file-pdf" role="img" xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 384 512" data-fa-i2svg="">
-                        <path fill="currentColor"
-                          d="M181.9 256.1c-5-16-4.9-46.9-2-46.9 8.4 0 7.6 36.9 2 46.9zm-1.7 47.2c-7.7 20.2-17.3 43.3-28.4 62.7 18.3-7 39-17.2 62.9-21.9-12.7-9.6-24.9-23.4-34.5-40.8zM86.1 428.1c0 .8 13.2-5.4 34.9-40.2-6.7 6.3-29.1 24.5-34.9 40.2zM248 160h136v328c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V24C0 10.7 10.7 0 24 0h200v136c0 13.2 10.8 24 24 24zm-8 171.8c-20-12.2-33.3-29-42.7-53.8 4.5-18.5 11.6-46.6 6.2-64.2-4.7-29.4-42.4-26.5-47.8-6.8-5 18.3-.4 44.1 8.1 77-11.6 27.6-28.7 64.6-40.8 85.8-.1 0-.1.1-.2.1-27.1 13.9-73.6 44.5-54.5 68 5.6 6.9 16 10 21.5 10 17.9 0 35.7-18 61.1-61.8 25.8-8.5 54.1-19.1 79-23.2 21.7 11.8 47.1 19.5 64 19.5 29.2 0 31.2-32 19.7-43.4-13.9-13.6-54.3-9.7-73.6-7.2zM377 105L279 7c-4.5-4.5-10.6-7-17-7h-6v128h128v-6.1c0-6.3-2.5-12.4-7-16.9zm-74.1 255.3c4.1-2.7-2.5-11.9-42.8-9 37.1 15.8 42.8 9 42.8 9z">
-                        </path>
-                      </svg><!-- <i class="fas fa-file-pdf"></i> Font Awesome fontawesome.com -->
-                    </span>
-                    <span>Paper</span>
-                  </a>
-                </span>
-                <span class="link-block">
-                  <a href="https://arxiv.org/abs/2303.17368" class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">
-                      <i class="ai ai-arxiv"></i>
-                    </span>
-                    <span>arXiv</span>
-                  </a>
-                </span>
-                <!-- Video Link. -->
-                <span class="link-block">
-                  <a href="https://www.youtube.com/watch?v=A2_NKE4tEwM" class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">
-                        <svg class="svg-inline--fa fa-youtube fa-w-18" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="youtube" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"></path></svg><!-- <i class="fab fa-youtube"></i> Font Awesome fontawesome.com -->
-                    </span>
-                    <span>Video</span>
-                  </a>
-                </span>
-              </div>
-            </div>
+  <main id="top">
+    <section class="hero" id="about">
+      <div class="eyebrow"><span></span><span data-i18n="role">Algorithm Researcher · Tencent TiMi Studio Group</span></div>
+      <div class="hero-grid">
+        <div>
+          <h1><span class="chinese-name">卿中飞</span><span class="english-name">Zhongfei <em>Qing</em></span></h1>
+          <p class="intro" data-i18n="intro">
+            我目前在腾讯天美工作室群从事算法研究，研究方向涵盖角色动画生成、视频动捕与
+            生成式人工智能，关注如何将前沿研究转化为真实可用的交互体验。
+          </p>
+          <div class="hero-links">
+            <a class="primary-link" href="#projects"><span data-i18n="viewWork">View selected work</span> <span aria-hidden="true">↓</span></a>
           </div>
         </div>
+        <aside class="research-note" aria-label="Research interests">
+          <p class="note-label" data-i18n="interestsLabel">Research interests</p>
+          <ul>
+            <li data-i18n="interestAnimation">Character Animation Generation</li>
+            <li data-i18n="interestModels">Video &amp; Generative Models</li>
+            <li data-i18n="interestWorld">World Models</li>
+          </ul>
+        </aside>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="hero teaser">
-    <div class="container is-max-desktop">
-      <div class="hero-body">
-        <img src="./static/teaser.png" alt="teaser" class="teaser">
-        <h2 class="subtitle has-text-centered">
-          <strong>Story-to-Motion</strong> is a new task that takes a story (top green area) and generates motions and trajectories that align with the text description.
-        </h2>
+    <section class="profile-facts" aria-label="Experience and education">
+      <div class="fact-heading">
+        <p class="kicker" data-i18n="backgroundKicker">Background</p>
+        <h2 data-i18n="backgroundTitle">Experience &amp; Education</h2>
       </div>
-    </div>
-  </section>
+      <div class="fact-list">
+        <article class="fact-row">
+          <p class="fact-year" data-locale data-en="2024.05 — Present" data-zh="2024.05 — 至今">2024.05 — Present</p>
+          <div>
+            <h3 data-locale data-en="Tencent · TiMi J1 Studio Machine Learning Group" data-zh="腾讯 · 天美 J1 工作室机器学习组">Tencent · TiMi J1 Studio Machine Learning Group</h3>
+            <p data-locale data-en="Algorithm Researcher · 3D / Video Generation" data-zh="算法研究员 · 3D / 视频生成方向">Algorithm Researcher · 3D / Video Generation</p>
+          </div>
+        </article>
+        <article class="fact-row">
+          <p class="fact-year">2023.11 — 2024.05</p>
+          <div>
+            <h3 data-locale data-en="miHoYo · Lumi Team" data-zh="米哈游 · 鹿鸣团队">miHoYo · Lumi Team</h3>
+            <p data-locale data-en="Research Intern · Motion Generation" data-zh="算法研究实习 · 动作生成方向">Research Intern · Motion Generation</p>
+          </div>
+        </article>
+        <article class="fact-row">
+          <p class="fact-year">2022.05 — 2023.11</p>
+          <div>
+            <h3 data-locale data-en="SenseTime Research · Content Generation Team" data-zh="商汤研究院 · 内容生成组">SenseTime Research · Content Generation Team</h3>
+            <p data-locale data-en="Research Intern · Computer Graphics & Deep Learning" data-zh="算法研究实习 · 计算机图形学与深度学习">Research Intern · Computer Graphics & Deep Learning</p>
+          </div>
+        </article>
+        <article class="fact-row education-row">
+          <p class="fact-year">2017 — 2024</p>
+          <div>
+            <h3 data-locale data-en="Huazhong University of Science and Technology → University of Chinese Academy of Sciences" data-zh="华中科技大学 → 中国科学院大学">Huazhong University of Science and Technology → University of Chinese Academy of Sciences</h3>
+            <p data-locale data-en="B.E. → M.S. · Major: Computer Science and Technology" data-zh="本科 → 硕士 · 专业：计算机科学与技术">B.E. → M.S. · Major: Computer Science and Technology</p>
+          </div>
+        </article>
+      </div>
+    </section>
 
-  <section class="section">
-    <div class="container is-max-desktop">
-      <!-- Abstract. -->
-      <div class="columns is-centered has-text-centered">
-        <div class="column is-four-fifths">
-          <h2 class="title is-3">Abstract</h2>
-          <div class="content has-text-justified">
-            Generating natural human motion from a story has the potential to transform the landscape of animation, gaming, and film industries. 
-            A new and challenging task, <strong>Story-to-Motion</strong>, arises when characters are required to move to various locations and perform specific motions based on a long text description.  This task demands a fusion of low-level control (trajectories) and high-level control (motion semantics). 
-            Previous works in character control and text-to-motion have addressed related aspects, yet a comprehensive solution remains elusive: character control methods do not handle text description, whereas text-to-motion methods lack position constraints and often produce unstable motions.
-            In light of these limitations, we propose a novel system that generates controllable, infinitely long motions and trajectories aligned with the input text.
-            1) we leverage contemporary Large Language Models to act as a text-driven motion scheduler to extract a series of (text, position) pairs from long text. 
-            2) we develop a text-driven motion retrieval scheme that incorporates classic motion matching with motion semantic and trajectory constraints. 
-            3) we design a progressive mask transformer that addresses common artifacts in the transition motion such as unnatural pose and foot sliding.
-            Beyond its pioneering role as the first comprehensive solution for Story-to-Motion, our system undergoes evaluation across three distinct sub-tasks: trajectory following, temporal action composition, and motion blending, where it outperforms previous state-of-the-art (SOTA) motion synthesis methods across the board.
+    <section class="projects" id="projects">
+      <div class="section-heading">
+        <div>
+          <p class="kicker" data-i18n="selectedWork">Selected work</p>
+          <h2 data-i18n="projectsTitle">Projects</h2>
+        </div>
+        <p data-i18n="projectsLead">A collection of research projects in motion, graphics, and generative intelligence.</p>
+      </div>
+
+      <div class="project-grid">
+        <article class="project-summary">
+          <div class="summary-image">
+            <img class="media-contain" src="./assets/projects/gifs/dragonmocap.gif" alt="DragonMoCap monocular motion capture across diverse dragon rigs" loading="eager">
+          </div>
+          <div class="summary-meta"><span>SIGGRAPH Asia Submission</span><span>Monocular Motion Capture · Arbitrary Rig Topologies · Character Animation</span></div>
+          <p class="project-credit" data-locale data-en="Role: First Author / Project Lead · Affiliation: Tencent" data-zh="身份：一作 / 主要负责人 · 成果单位：腾讯">Role: First Author / Project Lead · Affiliation: Tencent</p>
+          <h3>DragonMoCap</h3>
+          <p class="summary-subtitle" data-locale data-en="Monocular motion capture for diverse dragon skeletons" data-zh="面向多样化龙类骨骼的单目视频动作捕捉">Monocular motion capture for diverse dragon skeletons</p>
+          <p data-locale data-en="DragonMoCap targets heterogeneous dragon characters in games and film. Unlike methods tied to a fixed human-body template, it takes the target skeleton itself as input and provides a unified solution for dragon rigs with different joint counts, topologies, and naming conventions." data-zh="DragonMoCap 面向游戏与影视中的异构龙类角色。不同于依赖固定人体模板的方法，它将目标骨骼作为输入，可统一处理关节数量、拓扑结构和命名方式各异的龙类绑定。">DragonMoCap targets heterogeneous dragon characters in games and film. Unlike methods tied to a fixed human-body template, it takes the target skeleton itself as input and provides a unified solution for dragon rigs with different joint counts, topologies, and naming conventions.</p>
+          <ul class="project-details">
+            <li data-locale data-en="Data and model: Built a UE5 dataset containing 14 professionally rigged dragon characters and approximately 600,000 animation frames. The model extracts visual features with DINOv2, combines CLIP semantics from bone names with skeletal topology to construct joint queries, and uses a shared Transformer to predict root motion and local joint rotations." data-zh="数据与模型：构建包含 14 个专业龙类角色、约 60 万帧动画的 UE5 数据集。模型以 DINOv2 提取视觉特征，并结合 CLIP 骨骼名称语义与拓扑信息生成关节查询，通过共享 Transformer 预测根运动和局部关节旋转。">Data and model: Built a UE5 dataset containing 14 professionally rigged dragon characters and approximately 600,000 animation frames. The model extracts visual features with DINOv2, combines CLIP semantics from bone names with skeletal topology to construct joint queries, and uses a shared Transformer to predict root motion and local joint rotations.</li>
+            <li data-locale data-en="Core innovation: Introduces skeleton-query-based variable-topology decoding and non-parametric retrieval, allowing the model to adapt to previously unseen character rigs without fine-tuning." data-zh="核心创新：提出基于骨骼查询的可变拓扑解码与非参数检索机制，使模型无需微调即可适配训练中未见的角色骨骼。">Core innovation: Introduces skeleton-query-based variable-topology decoding and non-parametric retrieval, allowing the model to adapt to previously unseen character rigs without fine-tuning.</li>
+            <li data-locale data-en="Performance: Achieves 13.85 cm MPJPE and 8.63 cm PA-MPJPE on six unseen skeletons while running at approximately 30 FPS on a single NVIDIA L20 GPU, providing a general and economical motion-capture solution for heterogeneous non-human character animation." data-zh="实验表现：在 6 个未见骨骼上达到 13.85 cm MPJPE / 8.63 cm PA-MPJPE，并可在单张 NVIDIA L20 GPU 上以约 30 FPS 运行，为异构非人角色的低成本动作捕捉与动画制作提供通用方案。">Performance: Achieves 13.85 cm MPJPE and 8.63 cm PA-MPJPE on six unseen skeletons while running at approximately 30 FPS on a single NVIDIA L20 GPU, providing a general and economical motion-capture solution for heterogeneous non-human character animation.</li>
+          </ul>
+          <div class="tag-list"><span>DINOv2</span><span>CLIP</span><span>Transformer</span><span>UE5</span><span>Arbitrary Topology</span></div>
+        </article>
+
+        <article class="project-summary">
+          <div class="summary-image">
+            <img src="./assets/projects/gifs/lifesimworld.gif" alt="LifeSimWorld open-world life simulation video world model demo" loading="lazy">
+          </div>
+          <div class="summary-meta"><span>Model Training in Progress</span><span>World Models · Video Understanding &amp; Generation · Game Data</span></div>
+          <p class="project-credit" data-locale data-en="Role: First Author / Project Lead · Affiliation: Tencent" data-zh="身份：一作 / 主要负责人 · 成果单位：腾讯">Role: First Author / Project Lead · Affiliation: Tencent</p>
+          <h3>LifeSimWorld</h3>
+          <p class="summary-subtitle" data-locale data-en="A unified video world model for understanding and generating open-ended life simulation" data-zh="面向开放生活模拟的理解—生成一体化视频世界模型">A unified video world model for understanding and generating open-ended life simulation</p>
+          <p data-locale data-en="A video world model for everyday life interactions. Unlike existing systems centered on navigation, combat, or short-horizon control, LifeSimWorld focuses on long-duration character–environment and character–character interactions such as sitting, eating, conversation, furniture use, and transitions between indoor and outdoor spaces." data-zh="面向日常生活交互的视频世界模型。不同于以导航、战斗或短时操控为主的现有工作，LifeSimWorld 聚焦坐下、进食、交谈、家具使用和室内外切换等长时角色—环境与角色—角色交互。">A video world model for everyday life interactions. Unlike existing systems centered on navigation, combat, or short-horizon control, LifeSimWorld focuses on long-duration character–environment and character–character interactions such as sitting, eating, conversation, furniture use, and transitions between indoor and outdoor spaces.</p>
+          <ul class="project-details">
+            <li data-locale data-en="Data system: Built a UE4SS-based automated capture and post-processing pipeline that synchronizes game video, camera trajectories, character states, and behavioral semantics, followed by temporal calibration, viewpoint filtering, person detection, black-border removal, and duplicate-frame cleaning. Beyond structured life-simulation data, collected and curated approximately 200 hours of high-quality AAA game footage to expand the diversity of environments, character behavior, and visual dynamics." data-zh="数据系统：构建基于 UE4SS 的自动化采集与后处理管线，同步记录游戏视频、相机轨迹、角色状态和行为语义，并完成时间校准、视角筛选、人物检测、黑边与重复帧清理。除结构化生活模拟数据外，进一步从互联网收集并清洗约 200 小时高质量 3A 游戏视频，扩展场景、角色行为与视觉动态的多样性。">Data system: Built a UE4SS-based automated capture and post-processing pipeline that synchronizes game video, camera trajectories, character states, and behavioral semantics, followed by temporal calibration, viewpoint filtering, person detection, black-border removal, and duplicate-frame cleaning. Beyond structured life-simulation data, collected and curated approximately 200 hours of high-quality AAA game footage to expand the diversity of environments, character behavior, and visual dynamics.</li>
+            <li data-locale data-en="Unified model: Designed and implemented a Qwen- and Wan2.2-based architecture that unifies video understanding and generation. Qwen models scene semantics, character state, and high-level behavioral instructions, while Wan2.2 learns visual dynamics and generates action-conditioned future video, connecting current-world understanding with future-state prediction and synthesis. Model training and system validation are in progress." data-zh="统一模型：设计并实现基于 Qwen 与 Wan2.2 的视频理解—生成一体化架构：以 Qwen 建模场景语义、角色状态与高层行为指令，以 Wan2.2 学习视觉动态并生成动作条件下的未来视频，实现从“理解当前世界”到“预测并生成后续状态”的统一建模。目前模型训练与系统验证正在进行中。">Unified model: Designed and implemented a Qwen- and Wan2.2-based architecture that unifies video understanding and generation. Qwen models scene semantics, character state, and high-level behavioral instructions, while Wan2.2 learns visual dynamics and generates action-conditioned future video, connecting current-world understanding with future-state prediction and synthesis. Model training and system validation are in progress.</li>
+            <li data-locale data-en="Core value: Connects structured game state, internet-scale high-quality video, and multimodal understanding–generation models into a complete data-to-model loop, providing a unified foundation for long-horizon controllable video generation, interactive world simulation, and embodied-intelligence training." data-zh="核心价值：LifeSimWorld 将结构化游戏状态、互联网级高质量视频和多模态理解—生成模型连接为完整闭环，为长时可控视频生成、交互式世界模拟与具身智能训练提供统一的数据和模型基础。">Core value: Connects structured game state, internet-scale high-quality video, and multimodal understanding–generation models into a complete data-to-model loop, providing a unified foundation for long-horizon controllable video generation, interactive world simulation, and embodied-intelligence training.</li>
+          </ul>
+          <div class="tag-list"><span>World Models</span><span>Video Understanding</span><span>Video Generation</span><span>Game Data</span><span>Qwen</span><span>Wan2.2</span></div>
+        </article>
+
+        <article class="project-summary">
+          <div class="summary-image">
+            <img src="./assets/projects/gifs/reasoning-structured-videos.gif" alt="Reasoning-Structured Videos compositional consistency evaluation demo" loading="lazy">
+          </div>
+          <div class="summary-meta"><span>NeurIPS 2026 · Under Review</span><span>World Models · Video Evaluation</span></div>
+          <p class="project-credit" data-locale data-en="Role: First Author / Project Lead · Affiliation: Tencent" data-zh="身份：一作 / 主要负责人 · 成果单位：腾讯">Role: First Author / Project Lead · Affiliation: Tencent</p>
+          <h3><a href="https://reasoningvideo.github.io/reasoning-structured-videos/" target="_blank" rel="noreferrer">Reasoning-Structured Videos</a></h3>
+          <p class="summary-subtitle" data-locale data-en="A hierarchical diagnostic benchmark for compositional consistency in video world models" data-zh="面向视频世界模型组合一致性的分层诊断基准">A hierarchical diagnostic benchmark for compositional consistency in video world models</p>
+          <p data-locale data-en="A structured evaluation framework for long-horizon controllable video generation. Beyond perceptual metrics such as FVD, LPIPS, and PSNR, it tests whether a model preserves the same underlying world across composed actions and multiple equivalent paths, decomposing failures into interpretable dimensions of realism, internal consistency, relation type, and temporal horizon." data-zh="面向长时可控视频生成的结构化评估框架。不同于仅用 FVD、LPIPS 或 PSNR 衡量单段视频的感知质量，本工作关注模型在组合动作与多条等价路径下是否仍然描述同一个世界，并将现实匹配、内部自洽、关系特定失效与长时误差累积拆分为可解释的能力维度。">A structured evaluation framework for long-horizon controllable video generation. Beyond perceptual metrics such as FVD, LPIPS, and PSNR, it tests whether a model preserves the same underlying world across composed actions and multiple equivalent paths, decomposing failures into interpretable dimensions of realism, internal consistency, relation type, and temporal horizon.</p>
+          <ul class="project-details">
+            <li data-locale data-en="Problem formulation: Models consistency in video world models as a cross-path compositional reasoning problem. Inverse, Loop, and Equivalence relations respectively diagnose action cancellation, closed-loop revisitation, and agreement between distinct paths that reach the same state." data-zh="问题建模：将视频世界模型的一致性建模为跨路径的组合推理问题，构造 Inverse、Loop 和 Equivalence 三种代数关系，分别诊断动作撤销、闭环重访和不同路径到达同一状态时的预测一致性。">Problem formulation: Models consistency in video world models as a cross-path compositional reasoning problem. Inverse, Loop, and Equivalence relations respectively diagnose action cancellation, closed-loop revisitation, and agreement between distinct paths that reach the same state.</li>
+            <li data-locale data-en="Data system: Builds a deterministic UE5 capture pipeline that organizes trajectories as rooted graphs with shared initial states, paired discrete action sequences, and continuous ground-truth camera poses. Geometric constraints, pose verification, and two-stage pixel validation ensure every algebraic relation holds exactly in the real data." data-zh="数据系统：基于 UE5 构建确定性视频采集管线，将轨迹组织为共享起点的有根图，同时提供离散动作序列与连续真值相机轨迹，并通过几何约束、位姿校验和两层像素验证保证每个关系在真实数据中严格成立。">Data system: Builds a deterministic UE5 capture pipeline that organizes trajectories as rooted graphs with shared initial states, paired discrete action sequences, and continuous ground-truth camera poses. Geometric constraints, pose verification, and two-stage pixel validation ensure every algebraic relation holds exactly in the real data.</li>
+            <li data-locale data-en="Hierarchical evaluation: Introduces complementary GT-anchor and Self-Consistency protocols to separate real-world fidelity from consistency under a model's own control semantics. The latter is invariant to model-specific action scales and produces relation- and horizon-resolved capability profiles across heterogeneous control interfaces." data-zh="分层评估：设计 GT-anchor 与 Self-Consistency 两级协议，分别回答“生成结果是否匹配真实世界”与“模型在自身控制语义下是否内部一致”。Self-Consistency 不依赖不同模型的动作尺度，可跨异构控制接口形成 relation- 和 horizon-resolved 能力画像，并作为 FVD 等整体质量指标的互补诊断。">Hierarchical evaluation: Introduces complementary GT-anchor and Self-Consistency protocols to separate real-world fidelity from consistency under a model's own control semantics. The latter is invariant to model-specific action scales and produces relation- and horizon-resolved capability profiles across heterogeneous control interfaces.</li>
+            <li data-locale data-en="Theory and validation: Shows from dynamical identifiability that one-step and even full-history prediction cannot identify the quotient-state structure induced by cross-path equivalence, while algebraically meaningful relations become exponentially rare in random data as the horizon grows. Experiments on Chunk-AR, Matrix-Game 2.0, and Infinite-World reveal model-specific relation difficulty and GT/SC gaps hidden by aggregate metrics." data-zh="理论与验证：从动力学可辨识性出发，证明单步乃至完整历史预测无法识别跨路径的商状态图结构，而具有代数意义的轨迹关系在随机数据中随时域指数稀缺。实验在 Chunk-AR、Matrix-Game 2.0 和 Infinite-World 上揭示了模型特定的关系难度排序及 GT/SC 差异，定位传统单一指标无法呈现的组合一致性失效。">Theory and validation: Shows from dynamical identifiability that one-step and even full-history prediction cannot identify the quotient-state structure induced by cross-path equivalence, while algebraically meaningful relations become exponentially rare in random data as the horizon grows. Experiments on Chunk-AR, Matrix-Game 2.0, and Infinite-World reveal model-specific relation difficulty and GT/SC gaps hidden by aggregate metrics.</li>
+          </ul>
+          <div class="tag-list"><span>World Models</span><span>Video Evaluation</span><span>UE5</span><span>Compositional Consistency</span></div>
+          <a href="https://reasoningvideo.github.io/reasoning-structured-videos/" target="_blank" rel="noreferrer"><span data-i18n="publicProject">Project page</span> ↗</a>
+        </article>
+
+      <article class="project-card">
+        <a class="project-media" href="./projects/story-to-motion/" aria-label="Open Story-to-Motion project page">
+          <img src="./assets/projects/gifs/story-to-motion.gif" alt="Story-to-Motion text-driven character animation demo" loading="lazy">
+          <span class="view-project"><span data-i18n="viewProject">View project</span> <span aria-hidden="true">↗</span></span>
+        </a>
+        <div class="project-copy">
+          <div class="project-meta">
+            <span>SIGGRAPH Asia 2023</span>
+            <span>Human Motion · Generative AI</span>
+          </div>
+          <p class="project-credit" data-locale data-en="Role: First Author / Project Lead · Affiliation: SenseTime Research" data-zh="身份：一作 / 主要负责人 · 成果单位：商汤研究院">Role: First Author / Project Lead · Affiliation: SenseTime Research</p>
+          <h3><a href="./projects/story-to-motion/">Story-to-Motion</a></h3>
+          <p class="project-subtitle" data-i18n="projectSubtitle">Synthesizing Infinite and Controllable Character Animation from Long Text</p>
+          <p class="project-authors">Zhongfei Qing, Zhongang Cai, Zhitao Yang, and Lei Yang</p>
+          <p data-i18n="projectDescription">
+            A language-driven system for generating controllable, infinitely long character
+            motions and trajectories from narrative text. It combines an LLM-based motion
+            scheduler, semantic motion retrieval, and a progressive mask transformer to
+            produce coherent animation across long stories.
+          </p>
+          <ul class="project-details">
+            <li data-locale data-en="Problem formulation: Unified long-horizon language understanding, semantic motion composition, trajectory tracking, and transition synthesis in a single generation problem rather than isolated subtasks." data-zh="问题建模：将长时叙事理解、语义动作编排、轨迹跟随和过渡动作生成统一为一个联合生成问题，而非彼此割裂的子任务。">Problem formulation: Unified long-horizon language understanding, semantic motion composition, trajectory tracking, and transition synthesis in a single generation problem rather than isolated subtasks.</li>
+            <li data-locale data-en="Core algorithm: Designed an LLM-based hierarchical motion scheduler, semantic-and-trajectory constrained motion matching, and a progressive masked-attention Transformer that achieved state-of-the-art results on motion inbetweening." data-zh="核心算法：设计基于 LLM 的分层动作调度器、同时受语义与轨迹约束的 Motion Matching，以及渐进式 masked-attention Transformer，并在动作补间任务上达到 SOTA。">Core algorithm: Designed an LLM-based hierarchical motion scheduler, semantic-and-trajectory constrained motion matching, and a progressive masked-attention Transformer that achieved state-of-the-art results on motion inbetweening.</li>
+            <li data-locale data-en="Physical correction: Derived SMPL inverse kinematics with swing-twist decomposition and AMASS-trained data-driven refinement to jointly address terrain adaptation, penetration, floating, and foot sliding." data-zh="物理修正：基于 swing-twist 解耦推导 SMPL 骨骼 IK，并结合 AMASS 训练的数据驱动修正，联合处理地形适配、穿模、浮空与滑步。">Physical correction: Derived SMPL inverse kinematics with swing-twist decomposition and AMASS-trained data-driven refinement to jointly address terrain adaptation, penetration, floating, and foot sliding.</li>
+          </ul>
+          <div class="project-actions">
+            <a class="project-link" href="./projects/story-to-motion/"><span data-i18n="projectPage">Project page</span> <span aria-hidden="true">→</span></a>
+            <a class="project-link subtle" href="https://arxiv.org/abs/2303.17368" target="_blank" rel="noreferrer"><span data-i18n="paper">Paper</span> ↗</a>
           </div>
         </div>
+      </article>
+
+        <article class="project-summary">
+          <div class="summary-image"><img src="./assets/projects/gifs/synbody.gif" alt="SynBody synthetic human dataset demo" loading="lazy"></div>
+          <div class="summary-meta"><span>ICCV 2023</span><span>Dataset</span></div>
+          <p class="project-credit" data-locale data-en="Role: Core Member · Affiliation: SenseTime Research" data-zh="身份：核心成员 · 成果单位：商汤研究院">Role: Core Member · Affiliation: SenseTime Research</p>
+          <h3>SynBody</h3>
+          <p class="summary-subtitle" data-i18n="synbodySubtitle">Synthetic Dataset with Layered Human Models for 3D Human Perception and Modeling</p>
+          <p data-i18n="synbodyDescription">A large-scale synthetic human dataset built with UE5 for 3D human perception. I designed the camera and character placement system, including visibility, occlusion, and scene-aware layout planning.</p>
+          <ul class="project-details">
+            <li data-locale data-en="Dataset system: Constructed a high-dimensional procedural generation space over scenes, identities, garments, motions, lighting, and viewpoints, producing layered ground truth for multiple 3D perception tasks." data-zh="数据系统：在场景、身份、服装、动作、光照和视角组成的高维空间中进行程序化采样，为多类三维人体感知任务生成分层真值标注。">Dataset system: Constructed a high-dimensional procedural generation space over scenes, identities, garments, motions, lighting, and viewpoints, producing layered ground truth for multiple 3D perception tasks.</li>
+            <li data-locale data-en="Core algorithm: Designed the paper's character placement and camera planning modules as a constrained search problem balancing visibility, occlusion, framing quality, and distribution diversity." data-zh="核心算法：将论文中的角色摆放与相机规划建模为约束搜索问题，在可见性、遮挡率、构图质量与数据分布多样性之间进行权衡。">Core algorithm: Designed the paper's character placement and camera planning modules as a constrained search problem balancing visibility, occlusion, framing quality, and distribution diversity.</li>
+            <li data-locale data-en="Robustness: Built scalable rejection sampling and geometric validation for human-scene collision, action feasibility, navigation paths, and camera-to-subject constraints." data-zh="鲁棒性设计：构建可规模化运行的拒绝采样与几何校验机制，处理人物-场景碰撞、动作可行性、导航路径及相机-主体约束。">Robustness: Built scalable rejection sampling and geometric validation for human-scene collision, action feasibility, navigation paths, and camera-to-subject constraints.</li>
+          </ul>
+          <div class="tag-list"><span>UE5</span><span>3D Human</span><span>Synthetic Data</span></div>
+          <a href="https://synbody.github.io/" target="_blank" rel="noreferrer"><span data-i18n="publicProject">Project page</span> ↗</a>
+        </article>
+
+        <article class="project-summary">
+          <div class="summary-image"><img src="./assets/projects/gifs/digital-human-livestream.gif" alt="AI digital human livestreaming demo" loading="lazy"></div>
+          <div class="summary-meta"><span>2023</span><span>Digital Human</span></div>
+          <p class="project-credit" data-locale data-en="Role: Core Member · Affiliation: SenseTime Research" data-zh="身份：核心成员 · 成果单位：商汤研究院">Role: Core Member · Affiliation: SenseTime Research</p>
+          <h3 data-i18n="livestreamTitle">AI Digital Human Livestreaming</h3>
+          <p class="summary-subtitle" data-i18n="livestreamSubtitle">Speech- and text-driven gesture generation for autonomous virtual presenters</p>
+          <p data-i18n="livestreamDescription">Developed gesture generation and continuous motion interpolation for an automated virtual livestreamer, aligning expressive gestures with speech rhythm and semantic intent.</p>
+          <ul class="project-details">
+            <li data-locale data-en="Multimodal generation: Coupled acoustic prosody, linguistic semantics, gesture primitives, and facial expression control in a continuously running virtual-presenter stack." data-zh="多模态生成：将声学韵律、文本语义、手势动作基元与面部表情控制耦合到可持续运行的虚拟主播系统中。">Multimodal generation: Coupled acoustic prosody, linguistic semantics, gesture primitives, and facial expression control in a continuously running virtual-presenter stack.</li>
+            <li data-locale data-en="Core algorithm: Designed speech/text-conditioned gesture synthesis and a third-order continuous interpolation scheme, while adapting BEAT and ZeroEGGs-style models for real-time production constraints." data-zh="核心算法：设计语音/文本条件手势生成与三阶连续插值方案，并针对实时生产约束适配 BEAT、ZeroEGGs 等模型。">Core algorithm: Designed speech/text-conditioned gesture synthesis and a third-order continuous interpolation scheme, while adapting BEAT and ZeroEGGs-style models for real-time production constraints.</li>
+            <li data-locale data-en="Control objective: Jointly optimized beat synchronization, semantic gesture triggering, transition smoothness, and long-duration stability for gestures such as greeting, pointing, and heart signs." data-zh="控制目标：联合优化节拍同步、语义动作触发、过渡平滑度和长时运行稳定性，保证问候、指向、比心等关键动作准确表达。">Control objective: Jointly optimized beat synchronization, semantic gesture triggering, transition smoothness, and long-duration stability for gestures such as greeting, pointing, and heart signs.</li>
+          </ul>
+          <div class="tag-list"><span>Gesture Generation</span><span>Speech</span><span>Animation</span></div>
+          <a href="https://www.bilibili.com/video/BV1aj411U7ca/" target="_blank" rel="noreferrer"><span data-i18n="watchDemo">Watch demo</span> ↗</a>
+        </article>
+
+        <article class="project-summary">
+          <div class="summary-image"><img src="./assets/projects/gifs/digital-life.gif" alt="Digital Life autonomous character interaction demo" loading="lazy"></div>
+          <div class="summary-meta"><span>CVPR 2024</span><span>Embodied Agents</span></div>
+          <p class="project-credit" data-locale data-en="Role: First Author / Project Lead · Affiliation: SenseTime Research" data-zh="身份：一作 / 主要负责人 · 成果单位：商汤研究院">Role: First Author / Project Lead · Affiliation: SenseTime Research</p>
+          <h3>Digital Life Project</h3>
+          <p class="summary-subtitle" data-i18n="digitalLifeSubtitle">Autonomous 3D Characters with Social Intelligence</p>
+          <p data-i18n="digitalLifeDescription">A multi-character virtual world combining language models with motion generation. I worked on text-driven interaction, semantic action execution, motion transitions, and multi-agent animation logic.</p>
+          <ul class="project-details">
+            <li data-locale data-en="Embodied intelligence: Built the grounding layer between open-ended LLM plans and temporally executable 3D actions in a persistent multi-agent environment." data-zh="具身智能：构建开放式 LLM 规划与可按时序执行的三维动作之间的 grounding 层，使多智能体能够在持续虚拟环境中自主交互。">Embodied intelligence: Built the grounding layer between open-ended LLM plans and temporally executable 3D actions in a persistent multi-agent environment.</li>
+            <li data-locale data-en="Motion intelligence: Developed a hybrid retrieval-and-generation stack combining semantic motion search, trajectory-conditioned synthesis, inbetweening, IK, and environment adaptation." data-zh="动作智能：研发融合语义动作检索、轨迹条件合成、动作补间、IK 与环境适配的混合式检索-生成链路。">Motion intelligence: Developed a hybrid retrieval-and-generation stack combining semantic motion search, trajectory-conditioned synthesis, inbetweening, IK, and environment adaptation.</li>
+            <li data-locale data-en="Multi-agent scheduling: Designed interaction graphs, temporal conflict resolution, and model-routing policies for coordinated behavior across long narratives and complex scenes." data-zh="多智能体调度：设计交互图、动作时序冲突消解与模型路由策略，支撑长篇叙事和复杂场景下的多角色协同行为。">Multi-agent scheduling: Designed interaction graphs, temporal conflict resolution, and model-routing policies for coordinated behavior across long narratives and complex scenes.</li>
+          </ul>
+          <div class="tag-list"><span>LLM</span><span>3D Characters</span><span>Interaction</span></div>
+        </article>
+
+        <article class="project-summary">
+          <div class="summary-image"><img src="./assets/projects/gifs/qq-speed-pet.gif" alt="QQ Speed AI pet motion retargeting demo" loading="lazy"></div>
+          <div class="summary-meta"><span>2025</span><span>Shipped</span></div>
+          <p class="project-credit" data-locale data-en="Role: Core Member · Affiliation: Tencent" data-zh="身份：核心成员 · 成果单位：腾讯">Role: Core Member · Affiliation: Tencent</p>
+          <h3 data-i18n="petTitle">QQ Speed AI Pet Motion</h3>
+          <p class="summary-subtitle" data-i18n="petSubtitle">Cross-skeleton animation retargeting and secondary motion</p>
+          <p data-i18n="petDescription">Built dance animation for an interactive in-game pet, improving cross-skeleton retargeting with position-based dynamics and adding physically inspired feather and tail motion.</p>
+          <ul class="project-details">
+            <li data-locale data-en="Retargeting challenge: Solved severe topology and proportion mismatch between source humanoid motion and a highly non-human parrot skeleton in a shipped real-time product." data-zh="重定向难点：解决人形源动作与高度非人形鹦鹉骨骼之间的拓扑和比例失配，并满足已上线实时产品的稳定性要求。">Retargeting challenge: Solved severe topology and proportion mismatch between source humanoid motion and a highly non-human parrot skeleton in a shipped real-time product.</li>
+            <li data-locale data-en="Constraint solver: Added a position-based dynamics post-process over Unreal Engine retargeting to enforce collision, pose, and continuity constraints without destroying dance rhythm." data-zh="约束求解：在 Unreal Engine 重定向结果上增加 PBD 后处理，同时施加碰撞、姿态与连续性约束，并保持舞蹈节奏不被破坏。">Constraint solver: Added a position-based dynamics post-process over Unreal Engine retargeting to enforce collision, pose, and continuity constraints without destroying dance rhythm.</li>
+            <li data-locale data-en="Secondary dynamics: Constructed spring-mass animation for feathers and tail with stable parameterization under fast motion, producing responsive yet controllable physical detail." data-zh="次级动力学：为羽毛与尾巴构建弹簧-质量动画，并针对快速运动进行稳定参数化，获得响应自然且可控的物理细节。">Secondary dynamics: Constructed spring-mass animation for feathers and tail with stable parameterization under fast motion, producing responsive yet controllable physical detail.</li>
+          </ul>
+          <div class="tag-list"><span>Retargeting</span><span>PBD</span><span>Unreal Engine</span></div>
+        </article>
+
+        <article class="project-summary">
+          <div class="summary-image"><img src="./assets/projects/gifs/video-mocap.gif" alt="Monster Hunter video motion capture reconstruction demo" loading="lazy"></div>
+          <div class="summary-meta"><span data-i18n="ongoing">Ongoing</span><span>Motion Capture</span></div>
+          <p class="project-credit" data-locale data-en="Role: First Author / Project Lead · Affiliation: Tencent" data-zh="身份：一作 / 主要负责人 · 成果单位：腾讯">Role: First Author / Project Lead · Affiliation: Tencent</p>
+          <h3 data-i18n="mocapTitle">Monster Hunter Video Motion Capture</h3>
+          <p class="summary-subtitle" data-i18n="mocapSubtitle">Multi-person motion reconstruction for rapid game prototyping</p>
+          <p data-i18n="mocapDescription">Developing a video-based motion capture pipeline for interacting characters, with accurate tracking, 3D human reconstruction, occlusion-aware motion recovery, and physics refinement.</p>
+          <ul class="project-details">
+            <li data-locale data-en="System decomposition: Built a modular video-to-animation stack covering identity-preserving tracking, global trajectory estimation, articulated 3D reconstruction, interaction completion, and physical correction." data-zh="系统分解：构建模块化视频转动画链路，覆盖身份保持跟踪、全局轨迹估计、三维关节重建、交互动作补全与物理修正。">System decomposition: Built a modular video-to-animation stack covering identity-preserving tracking, global trajectory estimation, articulated 3D reconstruction, interaction completion, and physical correction.</li>
+            <li data-locale data-en="Occlusion reasoning: Combined SAMURAI with GVHMR/NLF and interaction-conditioned diffusion to recover heavily occluded limbs and reduce temporal jitter in close-contact scenes." data-zh="遮挡推理：融合 SAMURAI、GVHMR/NLF 与交互条件 diffusion，恢复近距离接触场景中的重度遮挡肢体并降低时序抖动。">Occlusion reasoning: Combined SAMURAI with GVHMR/NLF and interaction-conditioned diffusion to recover heavily occluded limbs and reduce temporal jitter in close-contact scenes.</li>
+            <li data-locale data-en="Physics refinement: Introduced contact-aware optimization to jointly suppress interpenetration, foot sliding, and unstable ground contact while preserving the captured motion intent." data-zh="物理优化：引入接触感知优化，联合抑制人体互穿、滑步和地面接触不稳定，同时保持原始表演意图。">Physics refinement: Introduced contact-aware optimization to jointly suppress interpenetration, foot sliding, and unstable ground contact while preserving the captured motion intent.</li>
+          </ul>
+          <div class="tag-list"><span>GVHMR</span><span>Tracking</span><span>Physics</span></div>
+        </article>
+
+        <article class="project-summary">
+          <div class="summary-image"><img src="./assets/projects/gifs/multi-character-video.gif" alt="Multi-character generative video demo" loading="lazy"></div>
+          <div class="summary-meta"><span data-i18n="ongoing">Ongoing</span><span>Generative Video</span></div>
+          <p class="project-credit" data-locale data-en="Role: First Author / Project Lead · Affiliation: Tencent" data-zh="身份：一作 / 主要负责人 · 成果单位：腾讯">Role: First Author / Project Lead · Affiliation: Tencent</p>
+          <h3 data-i18n="videoTitle">Multi-character Video Generation</h3>
+          <p class="summary-subtitle" data-i18n="videoSubtitle">Consistent character appearance for dance and narrative video</p>
+          <p data-i18n="videoDescription">Research on controllable multi-character video generation, focusing on identity and clothing consistency through LoRA training, preference optimization, and attention-guided conditioning.</p>
+          <ul class="project-details">
+            <li data-locale data-en="Multi-subject challenge: Tackled identity binding, clothing consistency, subject disentanglement, and temporal appearance drift in long-form dance and narrative generation." data-zh="多主体难题：针对长时舞蹈与剧情生成中的身份绑定、服装一致性、主体解耦和时序外观漂移进行联合优化。">Multi-subject challenge: Tackled identity binding, clothing consistency, subject disentanglement, and temporal appearance drift in long-form dance and narrative generation.</li>
+            <li data-locale data-en="Training strategy: Reworked Wan2.2 LoRA optimization with curated preference pairs and DPO/SimPO-style post-training to improve fidelity, motion quality, and generation stability." data-zh="训练策略：重构 Wan2.2 LoRA 优化流程，构造偏好样本对并引入 DPO/SimPO 类后训练，提高保真度、动作质量与生成稳定性。">Training strategy: Reworked Wan2.2 LoRA optimization with curated preference pairs and DPO/SimPO-style post-training to improve fidelity, motion quality, and generation stability.</li>
+            <li data-locale data-en="Attention control: Designed attention guidance to suppress cross-character prompt leakage and introduced color matching in Wan-Animate to mitigate accumulated visual drift." data-zh="注意力控制：设计注意力引导抑制跨角色提示词泄漏，并在 Wan-Animate 中引入 color matching 缓解累积画面漂移。">Attention control: Designed attention guidance to suppress cross-character prompt leakage and introduced color matching in Wan-Animate to mitigate accumulated visual drift.</li>
+          </ul>
+          <div class="tag-list"><span>Video Diffusion</span><span>LoRA</span><span>DPO</span></div>
+        </article>
+
+        <article class="project-summary" hidden data-project="game-production-aigc">
+          <div class="summary-image visual-placeholder" role="img" aria-label="Temporary visual for game production AIGC"><span>GAME<br>AIGC</span></div>
+          <div class="summary-meta"><span>Production</span><span>AIGC Pipeline</span></div>
+          <p class="project-credit" data-locale data-en="Role: Core Member · Affiliation: Tencent" data-zh="身份：核心成员 · 成果单位：腾讯">Role: Core Member · Affiliation: Tencent</p>
+          <h3 data-locale data-en="Game Production AIGC Pipeline" data-zh="游戏制作提效 AIGC 应用部署">Game Production AIGC Pipeline</h3>
+          <p class="summary-subtitle" data-locale data-en="Deploying generative models for efficient game-art production" data-zh="面向游戏美术生产的生成模型工程化落地">Deploying generative models for efficient game-art production</p>
+          <p data-locale data-en="Built a model adaptation and serving platform that translates heterogeneous generative research models into stable game-art production capabilities across texture, image, pose, and facial domains." data-zh="构建生成模型适配与服务化平台，将异构前沿模型转化为稳定的游戏美术生产能力，覆盖纹理、图像、姿态与表情等多个模态。">Built a model adaptation and serving platform that translates heterogeneous generative research models into stable game-art production capabilities across texture, image, pose, and facial domains.</p>
+          <ul class="project-details">
+            <li data-locale data-en="Inverse graphics: Formulated low-LOD material recovery as differentiable-rendering optimization, automatically reconstructing UV-island content and repairing sub-pixel seam artifacts." data-zh="逆向图形学：将低 LOD 材质恢复建模为可微渲染优化，自动重建 UV 岛内容并修复亚像素级接缝瑕疵。">Inverse graphics: Formulated low-LOD material recovery as differentiable-rendering optimization, automatically reconstructing UV-island content and repairing sub-pixel seam artifacts.</li>
+            <li data-locale data-en="Model adaptation: Built task-specific fine-tuning and inference pipelines for texture super-resolution and Flux/Qwen-based character style and pose transfer." data-zh="模型适配：为纹理超分辨率及基于 Flux/Qwen 的角色风格转换与姿态迁移构建任务化微调和推理链路。">Model adaptation: Built task-specific fine-tuning and inference pipelines for texture super-resolution and Flux/Qwen-based character style and pose transfer.</li>
+            <li data-locale data-en="Productionization: Established model benchmarking, quality gates, service integration, and automated batch processing, including a LivePortrait-based facial-animation service." data-zh="工程化落地：建立模型评测、质量门禁、服务集成与自动批处理体系，并部署基于 LivePortrait 的表情动画服务。">Productionization: Established model benchmarking, quality gates, service integration, and automated batch processing, including a LivePortrait-based facial-animation service.</li>
+          </ul>
+          <div class="tag-list"><span>Diff. Rendering</span><span>Super-resolution</span><span>Deployment</span></div>
+        </article>
       </div>
-      <!--/ Abstract. -->
+    </section>
+  </main>
 
-      <!-- Paper video. -->
-      <div class="columns is-centered has-text-centered">
-        <div class="column is-four-fifths">
-          <h2 class="title is-3">Video</h2>
-          <div class="publication-video">
-            <iframe src="https://www.youtube.com/embed/A2_NKE4tEwM?si=Kq4nVkrPt6q5eEhz" frameborder="0" allow="autoplay; encrypted-media"
-              allowfullscreen=""></iframe>
-          </div>
-        </div>
-      </div>
-      <!--/ Paper video. -->
+  <footer>
+    <p>© <span id="year">2026</span> Zhongfei Qing</p>
+    <a href="#top"><span data-i18n="backToTop">Back to top</span> ↑</a>
+  </footer>
 
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
 
-    </div>
+    const translations = {
+      en: {
+        navAbout: 'About', navProjects: 'Projects', role: 'Algorithm Researcher · Tencent TiMi Studio Group',
+        intro: 'I am an algorithm researcher at Tencent TiMi Studio Group. My work spans character animation generation, video motion capture, and generative AI, with a focus on bringing research systems into real-world interactive experiences.',
+        viewWork: 'View selected work', interestsLabel: 'Research interests',
+        interestAnimation: 'Character Animation Generation',
+        interestModels: 'Video & Generative Models', interestWorld: 'World Models',
+        backgroundKicker: 'Background', backgroundTitle: 'Experience & Education',
+        presentDate: '2024 — Present', tencentName: 'Tencent · TiMi Studio Group',
+        tencentRole: 'Algorithm Researcher, Machine Learning',
+        ucasName: 'University of Chinese Academy of Sciences', ucasDegree: 'M.S. in Computer Science and Technology',
+        hustName: 'Huazhong University of Science and Technology', hustDegree: 'B.E. in Mechanical Science and Engineering',
+        selectedWork: 'Selected work', projectsTitle: 'Projects',
+        projectsLead: 'A collection of research projects in motion, graphics, and generative intelligence.',
+        moreProjects: 'More projects', moreProjectsLead: 'Selected research and production work across digital humans, motion, and game content creation.',
+        synbodySubtitle: 'Synthetic Dataset with Layered Human Models for 3D Human Perception and Modeling',
+        synbodyDescription: 'A constraint-aware procedural data engine built on UE5 for large-scale 3D human perception. I designed the core scene synthesis algorithms that jointly optimize character placement, camera pose, visibility, occlusion, and spatial diversity.',
+        publicProject: 'Project page',
+        livestreamTitle: 'AI Digital Human Livestreaming', livestreamSubtitle: 'Speech- and text-driven gesture generation for autonomous virtual presenters',
+        livestreamDescription: 'Developed a production-grade co-speech motion generation system under joint semantic, rhythmic, and kinematic constraints, enabling long-duration expressive animation for autonomous virtual presenters.', watchDemo: 'Watch demo',
+        digitalLifeSubtitle: 'Autonomous 3D Characters with Social Intelligence',
+        digitalLifeDescription: 'An embodied multi-agent system that grounds high-level LLM decisions into executable 3D behavior. I designed the motion intelligence layer spanning semantic planning, trajectory control, motion synthesis, transition generation, and multi-character coordination.',
+        petTitle: 'QQ Speed AI Pet Motion', petSubtitle: 'Cross-skeleton animation retargeting and secondary motion',
+        petDescription: 'Built a robust heterogeneous-skeleton retargeting and secondary-motion pipeline for a shipped AI pet, combining kinematic correction, position-based dynamics, collision handling, and spring simulation.',
+        ongoing: 'Ongoing', mocapTitle: 'Monster Hunter Video Motion Capture', mocapSubtitle: 'Multi-person motion reconstruction for rapid game prototyping',
+        mocapDescription: 'Developed a multi-stage video motion capture system for challenging two-person interactions, integrating long-term tracking, monocular 3D reconstruction, occlusion-aware generative completion, and physics-based refinement.',
+        videoTitle: 'Multi-character Video Generation', videoSubtitle: 'Consistent character appearance for dance and narrative video',
+        videoDescription: 'Developed controllable multi-character video generation algorithms for the coupled problems of subject binding, clothing consistency, temporal stability, and identity preservation using preference optimization and attention-level control.',
+        viewProject: 'View project',
+        projectSubtitle: 'Synthesizing Infinite and Controllable Character Animation from Long Text',
+        projectDescription: 'A hierarchical language-to-motion framework for unbounded character animation under simultaneous semantic, trajectory, temporal-continuity, and physical-plausibility constraints. It decomposes long narratives into executable motion plans and synthesizes coherent motion without a fixed sequence horizon.',
+        projectPage: 'Project page', paper: 'Paper', backToTop: 'Back to top'
+      },
+      zh: {
+        navAbout: '关于', navProjects: '项目', role: '算法研究员 · 腾讯天美工作室群',
+        intro: '我目前在腾讯天美工作室群从事算法研究，研究方向涵盖角色动画生成、视频动捕与生成式人工智能，关注如何将前沿研究转化为真实可用的交互体验。',
+        viewWork: '查看精选工作', interestsLabel: '研究方向',
+        interestAnimation: '角色动画生成',
+        interestModels: '视频与生成模型', interestWorld: '世界模型',
+        backgroundKicker: '个人背景', backgroundTitle: '工作与教育经历',
+        presentDate: '2024 — 至今', tencentName: '腾讯 · 天美工作室群',
+        tencentRole: '机器学习方向算法研究员',
+        ucasName: '中国科学院大学', ucasDegree: '计算机科学与技术硕士',
+        hustName: '华中科技大学', hustDegree: '机械科学与工程学士',
+        selectedWork: '精选工作', projectsTitle: '项目',
+        projectsLead: '汇总我在人体动作、计算机图形学与生成式智能方向的研究项目。',
+        moreProjects: '更多项目', moreProjectsLead: '我在数字人、动作生成与游戏内容生产方向的部分研究及落地工作。',
+        synbodySubtitle: '面向三维人体感知与建模的分层人体模型合成数据集',
+        synbodyDescription: '基于 UE5 构建面向大规模三维人体感知的约束驱动程序化数据引擎。我负责核心场景合成算法，在角色摆放、相机位姿、可见性、遮挡率与空间多样性之间进行联合规划。',
+        publicProject: '项目主页',
+        livestreamTitle: 'AI 数字人直播', livestreamSubtitle: '面向全自动虚拟主播的语音与文本驱动手势生成',
+        livestreamDescription: '研发满足语义、节奏与运动学连续性联合约束的生产级共语动作生成系统，为全自动虚拟主播提供可长时间稳定运行的表达性动画。', watchDemo: '观看演示',
+        digitalLifeSubtitle: '具有社交智能的自主三维角色',
+        digitalLifeDescription: '构建将 LLM 高层决策落地为可执行三维行为的具身多智能体系统。我负责动作智能层，覆盖语义规划、轨迹控制、动作合成、过渡生成与多角色协同。',
+        petTitle: 'QQ 飞车 AI 宠物动作', petSubtitle: '跨骨骼动画重定向与次级动态效果',
+        petDescription: '为已上线 AI 宠物构建异构骨骼动作重定向与次级动态系统，联合运动学修正、PBD 约束求解、碰撞处理与弹簧物理模拟。',
+        ongoing: '持续研发', mocapTitle: '怪物猎人视频动捕', mocapSubtitle: '面向游戏快速原型验证的多人动作重建',
+        mocapDescription: '面向高难度双人交互研发多阶段视频动捕系统，集成长时跟踪、单目三维人体重建、遮挡感知生成式补全与物理约束优化。',
+        videoTitle: '多角色视频生成', videoSubtitle: '面向舞蹈与剧情视频的角色外观一致性',
+        videoDescription: '研发可控多角色视频生成算法，重点解决主体绑定、服装一致性、身份保持与时序稳定性之间的耦合难题，并引入偏好优化与注意力级控制。',
+        viewProject: '查看项目',
+        projectSubtitle: '从长文本生成无限且可控的角色动画',
+        projectDescription: '面向无界时长角色动画的分层语言到动作框架，在语义一致、轨迹约束、时序连续与物理合理性等多重目标下，将长篇叙事分解为可执行动作计划并持续合成连贯运动。',
+        projectPage: '项目主页', paper: '论文', backToTop: '返回顶部'
+      }
+    };
 
-  </section>
-
-
-  
-  <section class="section" id="BibTeX">
-    <div class="container is-max-desktop content">
-      <h2 class="title">BibTeX</h2>
-      <pre><code>@misc{qing2023story-to-motion,
-  title={Story-to-Motion: Synthesizing Infinite and Controllable Character Animation from Long Text}, 
-  author={Zhongfei, Qing and Zhongang, Cai and Zhitao, Yang and Lei, Yang},
-  year={2023},
-  journal={arXiv preprint arXiv:2303.17368},
-}</code></pre>
-    </div>
-  </section>
+    const languageButton = document.querySelector('[data-language-toggle]');
+    function setLanguage(language) {
+      const selected = translations[language] ? language : 'en';
+      document.documentElement.lang = selected === 'zh' ? 'zh-CN' : 'en';
+      document.querySelectorAll('[data-i18n]').forEach((element) => {
+        element.textContent = translations[selected][element.dataset.i18n];
+      });
+      document.querySelectorAll('[data-locale]').forEach((element) => {
+        element.textContent = element.dataset[selected];
+      });
+      languageButton.textContent = selected === 'zh' ? 'EN' : '中文';
+      languageButton.setAttribute('aria-label', selected === 'zh' ? 'Switch to English' : '切换到中文');
+      localStorage.setItem('site-language-v2', selected);
+    }
+    languageButton.addEventListener('click', () => {
+      setLanguage(document.documentElement.lang.startsWith('zh') ? 'en' : 'zh');
+    });
+    setLanguage(localStorage.getItem('site-language-v2') || 'zh');
+  </script>
 </body>
+</html>

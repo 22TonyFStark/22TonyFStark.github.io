@@ -145,3 +145,22 @@ body {
 #interpolation-image-wrapper img {
   border-radius: 5px;
 }
+.home-link {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 50;
+  padding: 10px 15px;
+  border-radius: 999px;
+  color: #fff;
+  background: rgba(25, 25, 25, .9);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 5px 18px rgba(0, 0, 0, .14);
+}
+
+.home-link:hover {
+  color: #fff;
+  background: #111;
+}
