@@ -199,9 +199,21 @@ h1 em { color: inherit; font-style: normal; font-weight: inherit; }
 }
 
 .project-grid {
-  display: block;
+  display: flex;
+  flex-direction: column;
   border: 0;
 }
+.project-grid > [data-project="lifesimworld"] { order: 10; }
+.project-grid > [data-project="reasoning-videos"] { order: 20; }
+.project-grid > [data-project="multi-character-video"] { order: 30; }
+.project-grid > [data-project="dragonmocap"] { order: 40; }
+.project-grid > [data-project="monster-hunter-mocap"] { order: 50; }
+.project-grid > [data-project="synbody"] { order: 60; }
+.project-grid > [data-project="story-to-motion"] { order: 70; }
+.project-grid > [data-project="digital-life"] { order: 80; }
+.project-grid > [data-project="digital-human-livestream"] { order: 90; }
+.project-grid > [data-project="qq-speed-pet"] { order: 100; border-bottom: 1px solid var(--line); }
+.project-grid > [data-project="game-production-aigc"] { order: 110; }
 .project-card,
 .project-summary {
   min-height: 0;
@@ -265,6 +277,11 @@ h1 em { color: inherit; font-style: normal; font-weight: inherit; }
 }
 .project-meta span + span::before,
 .summary-meta span + span::before { content: "·"; margin-right: 14px; }
+.project-meta .accepted-label,
+.summary-meta .accepted-label {
+  color: var(--ink);
+  font-weight: 700;
+}
 .project-copy h3,
 .project-summary h3 {
   grid-column: 2;
