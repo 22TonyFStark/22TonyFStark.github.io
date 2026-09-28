@@ -343,6 +343,10 @@ h1 em { color: inherit; font-style: normal; font-weight: inherit; }
   font-size: 11px;
   line-height: 1.5;
 }
+.project-summary .full-author-list {
+  font-size: 10.5px;
+  line-height: 1.45;
+}
 .project-summary .author-note {
   margin: -4px 0 8px;
   color: #777d82;
