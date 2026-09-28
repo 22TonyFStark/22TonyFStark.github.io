@@ -85,6 +85,10 @@
       </div>
 
       <div class="project-grid">
+        <div class="project-group-heading" data-project-group="highlight">
+          <p class="kicker" data-i18n="highlightedWorkLabel">Highlighted work</p>
+          <h3 data-i18n="highlightedWorkTitle">Highlighted Work</h3>
+        </div>
         <article class="project-summary" data-project="dragonmocap">
           <div class="summary-image">
             <img class="media-contain" src="./assets/projects/gifs/dragonmocap.gif" alt="DragonMoCap monocular motion capture across diverse dragon rigs" loading="eager">
@@ -93,6 +97,7 @@
           <p class="project-credit" data-locale data-en="Role: First Author / Project Lead · Affiliation: Tencent" data-zh="身份：一作 / 主要负责人 · 成果单位：腾讯">Role: First Author / Project Lead · Affiliation: Tencent</p>
           <h3>DragonMoCap</h3>
           <p class="summary-subtitle" data-locale data-en="Monocular motion capture for arbitrary dragon rig topologies" data-zh="面向任意龙类骨骼拓扑的单目视频动作捕捉">Monocular motion capture for arbitrary dragon rig topologies</p>
+          <p class="summary-authors"><strong>Zhongfei Qing</strong>, Xiaoxiang Zhao, Ling-Hao Chen, Zhongang Cai, Wenjia Wang, Yifan Wu, Qianying Liu, Wei Zeng, Bo Hu, Songnan Li</p>
           <p data-locale data-en="Dragon characters may be bipedal or quadrupedal, with or without wings, so they cannot be represented by a single SMPL/SMAL-style parametric template. Fixed-dimensional decoders also fail to transfer to previously unseen rigs." data-zh="龙类角色存在双足/四足、有无翅膀等拓扑差异，无法用 SMPL/SMAL 式统一参数模型表示；固定维度解码器也无法迁移至未见角色绑定。">Dragon characters may be bipedal or quadrupedal, with or without wings, so they cannot be represented by a single SMPL/SMAL-style parametric template. Fixed-dimensional decoders also fail to transfer to previously unseen rigs.</p>
           <ul class="project-details">
             <li data-locale data-en="Problem: Dragon rigs vary substantially in joint count and topology, while conventional fixed-output motion-capture networks assume one predefined skeleton and cannot generalize to unseen bindings." data-zh="问题：龙类骨骼在关节数量与拓扑上差异显著，而传统固定输出维度的动捕网络依赖预定义骨骼，难以泛化至训练中未见的绑定。">Problem: Dragon rigs vary substantially in joint count and topology, while conventional fixed-output motion-capture networks assume one predefined skeleton and cannot generalize to unseen bindings.</li>
@@ -102,6 +107,10 @@
           <div class="tag-list"><span>DINOv2</span><span>CLIP</span><span>Transformer</span><span>UE5</span><span>Arbitrary Topology</span></div>
         </article>
 
+        <div class="project-group-heading" data-project-group="other">
+          <p class="kicker" data-i18n="otherWorkLabel">Other work</p>
+          <h3 data-i18n="otherWorkTitle">Other Work</h3>
+        </div>
         <article class="project-summary" data-project="lifesimworld">
           <div class="summary-image">
             <img src="./assets/projects/gifs/lifesimworld.gif" alt="LifeSimWorld open-world life simulation video world model demo" loading="lazy">
@@ -123,7 +132,7 @@
           <div class="summary-image">
             <img src="./assets/projects/gifs/reasoning-structured-videos.gif" alt="Reasoning-Structured Videos compositional consistency evaluation demo" loading="lazy">
           </div>
-          <div class="summary-meta"><span>NeurIPS 2026 · Under Review</span><span>World Models · Video Evaluation</span></div>
+          <div class="summary-meta"><span>ICLR 2027 · Under Review</span><span>World Models · Video Evaluation</span></div>
           <p class="project-credit" data-locale data-en="Role: First Author / Project Lead · Affiliation: Tencent" data-zh="身份：一作 / 主要负责人 · 成果单位：腾讯">Role: First Author / Project Lead · Affiliation: Tencent</p>
           <h3><a href="https://reasoningvideo.github.io/reasoning-structured-videos/" target="_blank" rel="noreferrer">Reasoning-Structured Videos</a></h3>
           <p class="summary-subtitle" data-locale data-en="A hierarchical diagnostic benchmark for compositional consistency in video world models" data-zh="面向视频世界模型组合一致性的分层诊断基准">A hierarchical diagnostic benchmark for compositional consistency in video world models</p>
@@ -202,6 +211,8 @@
           <p class="project-credit" data-locale data-en="Role: First Author / Project Lead · Affiliation: SenseTime Research" data-zh="身份：一作 / 主要负责人 · 成果单位：商汤研究院">Role: First Author / Project Lead · Affiliation: SenseTime Research</p>
           <h3>Digital Life Project</h3>
           <p class="summary-subtitle" data-i18n="digitalLifeSubtitle">Autonomous 3D Characters with Social Intelligence</p>
+          <p class="summary-authors">Zhongang Cai*, Jianping Jiang*, <strong>Zhongfei Qing*</strong>, Xinying Guo*, Mingyuan Zhang*, et al.</p>
+          <p class="author-note">* Equal contribution</p>
           <p data-i18n="digitalLifeDescription">An embodied multi-agent system that compiles high-level LLM intentions into continuous 3D behavior. I led the motion-intelligence layer spanning skill selection, navigation, IK, state machines, transition generation, and multi-character coordination.</p>
           <ul class="project-details">
             <li data-locale data-en="Problem: LLMs produce discrete high-level intentions but cannot directly control continuous 3D motion; multi-character social behavior must also satisfy collision avoidance, gaze, motion transitions, and interruptible real-time response." data-zh="问题：LLM 输出离散高层意图，却无法直接控制连续三维运动；多角色社交还需同时满足空间避碰、注视关系、动作衔接和可中断实时响应。">Problem: LLMs produce discrete high-level intentions but cannot directly control continuous 3D motion; multi-character social behavior must also satisfy collision avoidance, gaze, motion transitions, and interruptible real-time response.</li>
@@ -243,7 +254,7 @@
 
         <article class="project-summary" data-project="multi-character-video">
           <div class="summary-image"><img src="./assets/projects/gifs/multi-character-video.gif" alt="Multi-character generative video demo" loading="lazy"></div>
-          <div class="summary-meta"><span>SIGGRAPH Asia Submission</span><span>Controllable Video Generation</span></div>
+          <div class="summary-meta"><span>Work in progress</span><span>Controllable Video Generation</span></div>
           <p class="project-credit" data-locale data-en="Role: First Author / Project Lead · Affiliation: Tencent" data-zh="身份：一作 / 主要负责人 · 成果单位：腾讯">Role: First Author / Project Lead · Affiliation: Tencent</p>
           <h3 data-i18n="videoTitle">Multi-character Video Generation</h3>
           <p class="summary-subtitle" data-i18n="videoSubtitle">Consistent character appearance for dance and narrative video</p>
@@ -295,6 +306,8 @@
         ucasName: 'University of Chinese Academy of Sciences', ucasDegree: 'M.S. in Computer Science and Technology',
         hustName: 'Huazhong University of Science and Technology', hustDegree: 'B.E. in Mechanical Science and Engineering',
         selectedWork: 'Selected work', projectsTitle: 'Projects',
+        highlightedWorkLabel: 'Selected highlights', highlightedWorkTitle: 'Highlighted Work',
+        otherWorkLabel: 'Additional projects', otherWorkTitle: 'Other Work',
         projectsLead: 'A collection of research projects in motion, graphics, and generative intelligence.',
         moreProjects: 'More projects', moreProjectsLead: 'Selected research and production work across digital humans, motion, and game content creation.',
         synbodySubtitle: 'Synthetic Dataset with Layered Human Models for 3D Human Perception and Modeling',
@@ -327,6 +340,8 @@
         ucasName: '中国科学院大学', ucasDegree: '计算机科学与技术硕士',
         hustName: '华中科技大学', hustDegree: '机械科学与工程学士',
         selectedWork: '精选工作', projectsTitle: '项目',
+        highlightedWorkLabel: '重点工作', highlightedWorkTitle: '重点项目',
+        otherWorkLabel: '其他工作', otherWorkTitle: '其他项目',
         projectsLead: '汇总我在人体动作、计算机图形学与生成式智能方向的研究项目。',
         moreProjects: '更多项目', moreProjectsLead: '我在数字人、动作生成与游戏内容生产方向的部分研究及落地工作。',
         synbodySubtitle: '面向三维人体感知与建模的分层人体模型合成数据集',
